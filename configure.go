@@ -1,7 +1,7 @@
 package microservice
 
 import (
-  "reflect"
+
 )
 
 const envPrefix string = "MYSERVICE"
@@ -14,25 +14,20 @@ type Config struct {
 	STORAGE_PORT string
 }
 
-func getVar() {
+interface configFieldsTypes {
+	uint | string
+}
 
+func setConfigField[ T configFieldsTypes ]( *field T, defaultVal T ) {
+	
 }
 
 func Configure() (Config, error) {
-        result := Config{
-		LISTEN_ADDERSS:		"127.0.0.1",
-		LISTEN_PORT:		"3000",
-
-		STORAGE_ADDRESS:	"127.0.0.1",
-		STORAGE_PORT:		"3306",
-	}
-
-	v := reflect.ValueOf(result)
-	f := v.Type()
-
-        for i := 0; i < v.NumField(); i++ {
-		f.Field(i).Name
-	}
-
+        result := Config{}
+	setConfigField[string]( &result.LISTEN_ADDERSS, "127.0.0.1" )
+	setConfigField[string]( &result.LISTEN_PORT, "3000" )
+	setConfigField[string]( &result.STORAGE_ADDRESS, "127.0.0.1" )
+	setConfigField[string]( &result.STORAGE_PORT, "3306" )
+	
         return result, nil
 }
