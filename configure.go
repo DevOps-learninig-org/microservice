@@ -14,11 +14,11 @@ type Config struct {
 	STORAGE_PORT string
 }
 
-interface configFieldsTypes {
-	uint | string
+type configFieldsTypes interface {
+	int | string
 }
 
-func setConfigField[ T configFieldsTypes ]( *field T, defaultVal T ) {
+func setConfigField[ T configFieldsTypes ]( field *T, defaultVal T ) {
 	
 }
 
