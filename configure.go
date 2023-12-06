@@ -1,0 +1,5 @@
+package microservice
+
+func configure() {
+
+}
